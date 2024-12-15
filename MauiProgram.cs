@@ -13,6 +13,8 @@ namespace deneme
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 });
+            string connectionString = "Server=DESKTOP-108VSJA;Database=NORTHWIND;User Id=sa;Password=sapass;Trusted_Connection=True;";
+            builder.Services.AddSingleton<DataService>(s => new DataService(connectionString));
 
             builder.Services.AddMauiBlazorWebView();
 

@@ -1,0 +1,34 @@
+﻿body
+{
+}
+div.mt-3 {
+    display: grid; /* Öğeleri bir ızgara düzenine sokar. */
+    grid-template-columns: repeat(4, 1fr); /* 5 eşit sütun oluşturur. Her sütun aynı genişliktedir. */
+    gap: 10px; /* Hücreler (butonlar) arasına 10 piksel boşluk bırakır. */
+    justify-items: center; /* Her butonu yatay olarak ortalar. */
+}
+
+.button {
+    background-color: cornflowerblue;
+    color: aliceblue;
+    border: 6px solid black;
+    border-color: azure;
+    border-radius: 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 35px;
+    margin: 4px 2px;
+    cursor: pointer;
+     width: 100%;  
+   
+    padding: 0px;  /*Buton iç dolgusunu düzenler. */
+    width: 300px; /* Buton genişliğini 85px olarak ayarlar */
+    height: 150px;
+}
+
+    .button:hover {
+        background-color: aliceblue; /*Carrot*/
+
+        color: cornflowerblue;
+    }

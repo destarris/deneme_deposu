@@ -1,5 +1,51 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
+
+<h3>İş Merkezleri</h3>
+
+<!-- Dinamik butonların ekleneceği alan -->
+<div class="mt-3">
+    @foreach (var button in Buttons)
+    {
+        <button class="button">@button</button>
+    }
+</div>
+
+@code {
+    // Buton sayısı
+    private int ButtonCount { get; set; } = 10; // Başlangıçta 5 buton
+
+    // Buton isimlerini tutan liste
+    private List<string> Buttons { get; set; } = new()
+    {
+       "fason","kaynak","testere","torna","boya","cnc","lazer","montaj","elektrik"
+    };
+}
+@* @code {
+    // Oluşturulacak buton sayısı
+    private int ButtonCount = 9;
+
+    // Buton metinlerini tutacak liste
+    private List<string> Buttons { get; set; } = new();
+    {
+    "fason","kaynak","testere","torna","boya","cnc","lazer","montaj","elektrik"
+    };
+
+    // Sayfa yüklendiğinde butonları oluştur
+    protected override void OnInitialized()
+    {
+        GenerateButtons();
+    }
+
+    // Butonları oluşturma işlemi
+    private void GenerateButtons()
+    {
+        Buttons.Clear(); // Önceki butonları temizle
+        for (int i = 1; i <= ButtonCount; i++)
+        {
+            Buttons.Add($"Buton {i}"); // Buton metnini listeye ekle
+        }
+    }
+}
+ *@

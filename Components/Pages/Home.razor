@@ -8,8 +8,13 @@
 <div class="mt-3">
     @foreach (var button in Buttons)
     {
-        <button class="button">@button</button>
+        <button class="button" @onclick="() => HandleButtonClick(button)">@button</button>
     }
+    <!-- Tıklanan butonun adı gösterilecek -->
+@if (!string.IsNullOrEmpty(SelectedButton))
+{
+    <p>Tıklanan Buton: <strong>@SelectedButton</strong></p>
+}
 </div>
 
 @code {
@@ -21,31 +26,24 @@
     {
        "fason","kaynak","testere","torna","boya","cnc","lazer","montaj","elektrik"
     };
-}
-@* @code {
-    // Oluşturulacak buton sayısı
-    private int ButtonCount = 9;
+    private string SelectedButton { get; set; } = string.Empty;
 
-    // Buton metinlerini tutacak liste
-    private List<string> Buttons { get; set; } = new();
+    // Tıklama işlemi için metot
+    private void HandleButtonClick(string buttonName)
     {
-    "fason","kaynak","testere","torna","boya","cnc","lazer","montaj","elektrik"
-    };
-
-    // Sayfa yüklendiğinde butonları oluştur
-    protected override void OnInitialized()
-    {
-        GenerateButtons();
-    }
-
-    // Butonları oluşturma işlemi
-    private void GenerateButtons()
-    {
-        Buttons.Clear(); // Önceki butonları temizle
-        for (int i = 1; i <= ButtonCount; i++)
+        SelectedButton = buttonName;
+        
+        // Console.WriteLine($"Tıklanan buton: {buttonName}");
+        // Buraya tıklanan butona göre başka işlemler de ekleyebilirsiniz
+        if (buttonName == "cnc")
         {
-            Buttons.Add($"Buton {i}"); // Buton metnini listeye ekle
+            SelectedButton = "CNC işlemi başladı!";
+        }
+        else
+        {
+            SelectedButton = $"{buttonName} butonuna tıklandı.";
         }
     }
 }
- *@
+
+ 

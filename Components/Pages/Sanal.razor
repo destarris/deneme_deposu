@@ -1,0 +1,21 @@
+@page "/divs"
+
+<h3>Dinamik Divler</h3>
+
+<!-- Div oluþturulacak alan -->
+<div class="container">
+    @for (int i = 1; i <= DivCount; i++)
+    {
+            <div class="dynamic-div"> div @i  </div>
+            if (i==5)
+        {
+            <h1>de</h1>
+        }
+    }
+    <Home />
+</div>
+
+@code {
+    // Div sayýsýný belirten deðiþken
+    private int DivCount { get; set; } = 5; // Baþlangýçta 5 div oluþturulacak
+}

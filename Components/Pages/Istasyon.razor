@@ -1,0 +1,31 @@
+@page "/istasyon" 
+
+<div class="container">
+    @for (int i = 0; i < istasyon_name.Count; i++)
+    {
+       <div class="dynamic-div"> @istasyon_name[i]  
+       
+
+
+       </div>
+                <div>@istasyon_status[i]</div>
+      
+    }
+
+</div>
+
+
+@code {
+    private List<string> istasyon_name = new()
+    {
+       "Kaynak-1","Kaynak-2","Kaynak-3","Kaynak-4","Kaynak-5","Kaynak-6","Kaynak-7","Kaynak-8","Kaynak-9"
+    };
+    private List<string> istasyon_status { get; set; } = new()
+    {
+       "Çalýþýyor","Boþta","Çalýþýyor","Boþta","Arýzalý","Arýzalý","Çalýþýyor","Boþta","Arýzalý"
+    };
+    private List<string> per_name { get; set; } = new()
+    {
+       "Çalýþýyor","Boþta","Çalýþýyor","Boþta","Arýzalý","Arýzalý","Çalýþýyor","Boþta","Arýzalý"
+    };
+}

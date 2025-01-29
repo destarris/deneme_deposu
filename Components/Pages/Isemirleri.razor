@@ -1,0 +1,90 @@
+@page "/Isemirleri" 
+
+<h3>Ýþ Emirleri</h3>
+<div class="job-cards-container">
+@for (int i = 0; i < baslik_kodu.Count; i++){
+
+   <div class="job-card">
+    <div class="job-card-header">
+        <span class="title-code">@baslik_kodu[i]</span>
+        <span class="timer">Süre: @timer[i]</span>
+    </div>
+    <div class="job-card-body">
+        <div class="job-info">
+            <p class="personnel">Personel Ýsmi: @per_ad[i]</p>
+            <p class="order-code">Ýþ Emri Kodu: @is_emri_kodu[i]</p>
+            <p class="stock-code">Stok Kodu: MP0305S001</p>
+            <p class="stock-name">Stok Adý: Þanzýman </p>
+        </div>
+        <div class="job-amounts">
+            <p class="order-amount">Ýþ Emri Miktarý: @miktar[i]</p>
+            <p class="remaining-amount">Kalan Miktar: @kalan[i]</p>
+            <p class="scrap-amount">Hurda Miktar: @hurda[i]</p>
+            <p class="delivery-date">Teslim Tarihi: 2025-02-01</p>
+        </div>
+    </div>
+            <div class="progress-container">
+    <div class="progress-bar">
+                <div class="progress" style="width:@(CalculateProgress(miktar[i],kalan[i]))%"></div>
+                </div>
+            </div>
+    <div class="buttons">
+        <button class="pdf-btn">PDF</button>
+        <button class="rota-btn">ROTA</button>
+        <button class="recipe-btn">REÇETE</button>
+    </div>
+    <button class="details-btn">DETAY</button>
+
+
+        </div>
+    }
+</div>
+            @code{
+    private List<string> baslik_kodu = new()
+    {
+       "Emir-1","Emir-2","Emir-3","Emir-4","Emir-5","Emir-6","Emir-7","Emir-8","Emir-9"
+    };
+    private List<string> per_ad { get; set; } = new()
+    {
+       "isim-soyisim","isim-soyisim","isim-soyisim","isim-soyisim","isim-soyisim","isim-soyisim","isim-soyisim","isim-soyisim","isim-soyisim"
+    };
+    private List<string> is_emri_kodu { get; set; } = new()
+    {
+       "DZN240000001229","DZN240000001230","DZN240000001231","DZN240000001232","DZN240000001233","DZN240000001234","DZN240000001234","DZN240000001235","DZN240000001236"
+    };
+    // private List<string> stok_kodu { get; set; } = new()
+    // {
+    //    "MP0305S001","00:00:00","01:08:54","--:--:--","05:12:03","--:--:--","--:--:--","05:12:03","--:--:--"
+    // };
+    // private List<string> stok_ad{ get; set; } = new()
+    // {
+    //    "01:08:54","00:00:00","01:08:54","--:--:--","05:12:03","--:--:--","--:--:--","05:12:03","--:--:--"
+    // };
+    private List<int> miktar { get; set; } = new()
+    {
+       10,9,100,35,45,52,68,25,35,
+    };
+    private List<int> kalan { get; set; } = new()
+    {
+       8,3,71,25,9,50,38,18,18,
+    };
+    private List<string> hurda { get; set; } = new()
+    {
+       "0", "0", "0", "0", "0", "0", "0", "0", "0",
+    };
+    // private List<string> teslim_tarih { get; set; } = new()
+    // {
+    //    "01:08:54","00:00:00","01:08:54","--:--:--","05:12:03","--:--:--","--:--:--","05:12:03","--:--:--"
+    // };
+    private List<string> timer { get; set; } = new()
+    {
+       "01:08:54","00:00:00","01:08:54","--:--:--","05:12:03","--:--:--","--:--:--","05:12:03","--:--:--"
+    };
+
+    private int CalculateProgress(int total, int remaining)
+    {
+        if (total == 0) return 0; // Bölme hatasýný önlemek için
+        int completed = total - remaining;
+        return (int)((double)completed / total * 100); // Yüzde olarak hesapla
+    }
+}

@@ -1,19 +1,33 @@
 @page "/istasyon" 
 
-<div class="container">
+@* <div class="container">
     @for (int i = 0; i < istasyon_name.Count; i++)
     {
-       <div class="dynamic-div"> @istasyon_name[i]  
-       
+       <div class="dynamic-div"> @istasyon_name[i]
 
+            <div>@istasyon_status[i]</div>
 
        </div>
-                <div>@istasyon_status[i]</div>
+               
       
     }
 
+</div> *@
+@inject NavigationManager Navigation
+<div class="container">
+    @for (int i = 0; i < istasyon_name.Count; i++)
+    {
+        <div class="istasyon-card" @onclick="Navigatetoistasyondetay" style="background-color: @(istasyon_status[i] == "Çalýþýyor" ? "#28a745" : istasyon_status[i] == "Arýzalý" ? "#dc3545" : "#ffc107" )">
+            <div class="istasyon-timer">
+                Zaman: @timer[i]
+            </div>
+            <div class="istasyon-name">@istasyon_name[i]</div>
+            <div class="istasyon-status">Durum: @istasyon_status[i]</div>
+            <div class="istasyon-personnel">Personel: @per_name[i]</div>
+        </div>
+    }
+   
 </div>
-
 
 @code {
     private List<string> istasyon_name = new()
@@ -28,4 +42,12 @@
     {
        "Çalýþýyor","Boþta","Çalýþýyor","Boþta","Arýzalý","Arýzalý","Çalýþýyor","Boþta","Arýzalý"
     };
+    private List<string> timer { get; set; } = new()
+    {
+       "01:08:54","00:00:00","01:08:54","--:--:--","05:12:03","--:--:--","--:--:--","05:12:03","--:--:--"
+    };
+    private void Navigatetoistasyondetay()
+    {
+        Navigation.NavigateTo("/Isemirleri");
+    }
 }
